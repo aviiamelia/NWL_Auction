@@ -2,9 +2,9 @@
 
 public class Auction
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public DateTime Starts { get; set; }
-    public DateTime Ends { get; set; }
-    public List<Item> Items { get; set; } = [];
+    public int id { get; set; }
+    public string name { get; set; } = string.Empty;
+    public DateTime starts { get; set; }
+    public DateTime ends { get; set; }
+    public List<Item> items { get; set; } = [];
 }
