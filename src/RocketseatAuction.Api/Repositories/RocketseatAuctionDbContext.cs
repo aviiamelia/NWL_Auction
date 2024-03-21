@@ -7,8 +7,10 @@ public class RocketseatAuctionDbContext : DbContext
 {
 
     public DbSet<Auction> Auctions { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<User> Users { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite(@"Data Source=C:\Users\rafae\Documentos\dev\NLW\C#\leilaoDbNLW.db");
+        optionsBuilder.UseNpgsql(@"Host=localhost;Port=5432;Database=rocketseatauction;Username=rocketseat;Password=auction;");
     }
 }

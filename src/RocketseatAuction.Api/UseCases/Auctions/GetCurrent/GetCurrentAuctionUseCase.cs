@@ -10,10 +10,11 @@ public class GetCurrentAuctionUseCase
     {
 
         var repository = new RocketseatAuctionDbContext();
-        var today = DateTime.Now;
+        var today = DateTime.UtcNow;
 
-        var auction = repository.Auctions.Include(auction => auction.Items)
-            .FirstOrDefault(auction => today >= auction.Starts && today <= auction.Ends);
+        var auction = repository.Auctions.Include(auction => auction.items)
+            .FirstOrDefault(auction => today >= auction.starts.ToUniversalTime() 
+            && today <= auction.ends.ToUniversalTime());
 
         return auction;
     }
