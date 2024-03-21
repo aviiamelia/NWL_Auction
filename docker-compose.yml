@@ -1,0 +1,11 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: rocketseat
+      POSTGRES_PASSWORD: auction
+      POSTGRES_DB: rocketseatauction
+    ports:
+      - "5432:5432"
+
