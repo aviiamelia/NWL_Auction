@@ -11,6 +11,6 @@ public class RocketseatAuctionDbContext : DbContext
     public DbSet<User> Users { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(@"Host=localhost;Port=5432;Database=rocketseatauction;Username=rocketseat;Password=auction;");
+        optionsBuilder.UseSqlite(@"Host=localhost;Port=5432;Database=rocketseatauction;Username=rocketseat;Password=auction;");
     }
 }

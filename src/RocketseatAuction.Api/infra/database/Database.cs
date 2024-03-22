@@ -16,7 +16,7 @@ public class Database
             using (var conn = new NpgsqlConnection(connString))
             {
                 conn.Open();
-                string createSchemaSql = "CREATE SCHEMA IF NOT EXISTS myschema;";
+                string createSchemaSql = "CREATE SCHEMA IF NOT EXISTS rocketseat;";
                 using (var cmd = new NpgsqlCommand(createSchemaSql, conn))
                 {
                     cmd.ExecuteNonQuery();
