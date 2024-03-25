@@ -1,13 +1,22 @@
 ﻿using Npgsql;
+using RocketseatAuction.Api.Contracts;
 using RocketseatAuction.Api.Entities;
-using RocketseatAuction.Api.Repositories;
-using System.Security.Cryptography;
+
 
 namespace RocketseatAuction.Api.infra.database;
 
 public class Database
 {
-    
+    private readonly IUserRepository _userRepository;
+    private readonly IITemsRepository _itemsRepository;
+
+
+    public Database(IUserRepository repository, IITemsRepository itemRepository) {
+        _userRepository = repository;
+        _itemsRepository = itemRepository;
+    }
+
+
     public void Main()
     {
         try {
@@ -42,8 +51,7 @@ public class Database
     }
     public void Populate()
     {
-        var repo = new RocketseatAuctionDbContext();
-        var items = repo.Items.ToList();
+        var items = _itemsRepository.ListAll();
         if (items.Count == 0)
         {
             List<Item> itemsToAdd = new List<Item>
@@ -56,11 +64,9 @@ public class Database
                 new Item { id = 6, name = "Drone com Camera Mavic Air 2", brand = "DJI", condition = 2, baseprice = 700.0f, auctionid = 1 },
                 new Item { id = 7, name = "Kindle Paperwhite 2022", brand = "Amazon", condition = 0, baseprice = 50.0f, auctionid = 1 }
             };
-            repo.Items.AddRange(itemsToAdd);
-            repo.SaveChanges();
-
+            _itemsRepository.AddMany(items);
         }
-        var users = repo.Users.ToList();
+        var users = _userRepository.ListAll();
         if (users.Count == 0)
         {
             List<User> usersToAdd = new List<User>
@@ -69,8 +75,7 @@ public class Database
                 new User { id = 2, name = "Tatiana", email = "tatiana@tatiana.com" },
                 new User { id = 3, name = "Lucimar", email = "lucimar@lucimar.com" }
             };
-            repo.Users.AddRange(usersToAdd);
-            repo.SaveChanges();
+            _userRepository.AddMany(usersToAdd);
         }
     }
 }
