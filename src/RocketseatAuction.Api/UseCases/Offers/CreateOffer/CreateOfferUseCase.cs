@@ -9,9 +9,9 @@ namespace RocketseatAuction.Api.UseCases.Offers.CreateOffer;
 
 public class CreateOfferUseCase
 {
-    public readonly LoggedUser _loggedUser;
+    public readonly ILoggedUser _loggedUser;
     public readonly IOfferRepository _repository;
-    public CreateOfferUseCase(LoggedUser loggedUser, IOfferRepository repository ) { 
+    public CreateOfferUseCase(ILoggedUser loggedUser, IOfferRepository repository ) { 
         _loggedUser = loggedUser;
         _repository = repository;
     }
